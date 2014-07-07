@@ -6312,7 +6312,7 @@ core-drawer-panel:not([narrow]) #navicon {
                     <div id="horizontalizante-container">
                         <fraguto-palavra data="{{palavra}}" baseurl="http://octavioturra.github.io/horizontalizante/" id="palavra"></fraguto-palavra>
                         <br>
-                        <fraguto-comentario-palavra baseurl="http://octavioturra.github.io/horizontalizante/" origem="{{r.chave}}"></fraguto-comentario-palavra>
+                        <fraguto-comentario-palavra baseurl="http://octavioturra.github.io/horizontalizante/" origem="{{palavra.key}}"></fraguto-comentario-palavra>
 
                     </div>
                 </main>
@@ -7002,7 +7002,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
         <section id="comentarios">
             <p>O que você acha que é? Qual sua opinião, ou alguma experiência sobre o assunto? Comente.</p>
-            <fb:comments href="{{baseurl}}/{{origem}}" numposts="5" colorscheme="light"></fb:comments>
+            <fb:comments href="{{baseurl}}#{{origem}}" numposts="5" colorscheme="light"></fb:comments>
         </section>
         <style>
             :host {
