@@ -6310,7 +6310,7 @@ core-drawer-panel:not([narrow]) #navicon {
                 </core-toolbar>
                 <main class="content center">
                     <div id="horizontalizante-container">
-                        <fraguto-palavra data="{{palavra}}" id="palavra"></fraguto-palavra>
+                        <fraguto-palavra data="{{palavra}}" baseurl="http://octavioturra.github.io/horizontalizante/" id="palavra"></fraguto-palavra>
                         <br>
                         <fraguto-comentario-palavra baseurl="http://octavioturra.github.io/horizontalizante/" origem="{{r.chave}}"></fraguto-comentario-palavra>
 
@@ -6989,7 +6989,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
         Polymer('fraguto-palavra', {
             data: {},
-            baseURL: 'http://octavioturra.github.io/horizontalizante/',
+            baseURL: 'http://localhost:3000',
             ready: function () {
 
             }
@@ -7030,15 +7030,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
     <script>
         Polymer('fraguto-comentario-palavra', {
-            baseurl: 'http://octavioturra.github.io/horizontalizante/',
+            baseurl: 'http://localhost:3000',
             origem: '',
+            observe: {
+                origem: 'reload'
+            },
+            reload: function () {
+                FB.XFBML.parse(this.$.comentarios);
+            },
             attached: function () {
+                var self = this;
                 if (!window.FB) {
                     setTimeout(function () {
-                        FB.XFBML.parse(this.$.comentarios);
+                        self.reload();
                     }, 3000);
                 } else {
-                    FB.XFBML.parse(this.$.comentarios);
+                    self.reload();
                 }
             }
         });
